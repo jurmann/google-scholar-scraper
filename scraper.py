@@ -18,26 +18,22 @@ def get_data(urls=None):
     title = soup.find("h1", attrs={"class": "ArticleTitle"})
     article_title = title.text
 
+    # get article date
     date = soup.find("span", attrs={"class": "ArticleCitation_Year"})
     article_date = date.text[:-2]
 
+    # get list of authors
     authors_list = []
     authors = soup.find_all("span", attrs={"class": "authors__name"})
     for author in authors:
         authors_list.append(author.text.replace(u'\xa0', u' '))
 
-    # Take out the <div> of name and get its value
-    name_box = soup.find("ul", attrs={"class": "test-contributor-names"})
-
-    name = name_box.text # strip() is used to remove starting and trailing
-    # print name
-
     # get the index price
-    price_box = soup.find("a", attrs={"class":"gtm-email-author"})
-    contact_author = price_box.parent.parent.parent.text[:-12]
-    contact_email = price_box.get('title')
+    contact = soup.find("a", attrs={"class":"gtm-email-author"})
+    contact_author = contact.parent.parent.parent.text[:-12]
+    contact_email = contact.get('title')
 
-
+    # get article keywords
     article_keywords = []
     keywords = soup.find_all("span", attrs={"class": "Keyword"})
     for keyword in keywords:
