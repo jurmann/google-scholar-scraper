@@ -1,13 +1,14 @@
-import urllib2
-from bs4 import BeautifulSoup
-import requests
+import os
 import sys
+import csv
+import urllib2
+import requests
+
 from time import sleep
 from random import randint
-import os
-import csv
+from bs4 import BeautifulSoup
 
-# specify the url
+
 def get_data(urls=None):
 
     for url in urls:
@@ -32,10 +33,12 @@ def get_data(urls=None):
             authors = soup.find_all("span", attrs={"class": "authors__name"})
             for author in authors:
                 authors_list.append(author.text)
+
+            # convert the list to a string to write to csv
             authors_string = ', '.join(authors_list)
             print authors_string
 
-            # get the index price
+            # get the contact email
             contact = soup.find("a", attrs={"class":"gtm-email-author"})
             contact_author = contact.parent.parent.parent.text[:-12]
             contact_email = contact.get('title')
@@ -48,13 +51,15 @@ def get_data(urls=None):
             keywords_string = ', '.join(article_keywords)
 
             output = [article_title, article_date, authors_string, contact_author, contact_email, keywords_string, url]
+
+        # if anything goes wrong above, don't write to csv
         except:
             continue
 
         output_to_csv(output)
 
 
-def get_urls(url, pages=10):
+def get_urls(url, pages=1):
 
     urls = []
 
