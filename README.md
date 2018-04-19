@@ -18,7 +18,8 @@ Currently, this will only work for the Google Scholar (or Google) search results
    - e.g. `site:springer.com heart transplant`  
 2) copy the url of the search results  
 3) Enter your terminal, go to the correct directory and enter the virtual environment
-4) Run `python scraper.py [google search url] [number of google pages to parse through]`  
+4) Run `python scraper.py "[google search url]" [number of google pages to parse through]`  
+** make sure the google search url is in quotes  
 
 ### Limitations
 - code only works for articles in html on springer.com  
