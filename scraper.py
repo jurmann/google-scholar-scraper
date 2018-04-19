@@ -9,6 +9,32 @@ from random import randint
 from bs4 import BeautifulSoup
 
 
+def get_urls(url, pages=1):
+
+    urls = []
+
+    n = 1
+    while n <= pages:
+
+        text = "&start="
+        number = str((n - 1) * 10)
+        google_results = str(url + text + number)
+
+        # query the website and return the html to the variable
+        response = requests.get(google_results)
+
+        # parse the html using beautiful soup and store in variable `soup`
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        for item in soup.find_all('h3', attrs={'class' : 'gs_rt'}):
+            urls.append(item.a['href'])
+        n += 1
+
+        # sleeping to not break google's policy
+        sleep(randint(4, 8))
+    get_data(urls)
+
+
 def get_data(urls=None):
 
     for url in urls:
@@ -16,6 +42,8 @@ def get_data(urls=None):
         # query the website and return the html to the variable
         page = urllib2.urlopen(url)
 
+
+        #TODO - add alert if google blocks searches
         try:
             # parse the html using beautiful soup and store in variable `soup`
             soup = BeautifulSoup(page, "html.parser", from_encoding="utf-8")
@@ -57,32 +85,6 @@ def get_data(urls=None):
             continue
 
         output_to_csv(output)
-
-
-def get_urls(url, pages=1):
-
-    urls = []
-
-    n = 1
-    while n <= pages:
-
-        text = "&start="
-        number = str((n - 1) * 10)
-        google_results = str(url + text + number)
-
-        # query the website and return the html to the variable
-        response = requests.get(google_results)
-
-        # parse the html using beautiful soup and store in variable `soup`
-        soup = BeautifulSoup(response.text, "html.parser")
-
-        for item in soup.find_all('h3', attrs={'class' : 'gs_rt'}):
-            urls.append(item.a['href'])
-        n += 1
-
-        # sleeping to not break google's policy
-        sleep(randint(4, 8))
-    get_data(urls)
 
 
 def output_to_csv(data):
