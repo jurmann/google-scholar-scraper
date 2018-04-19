@@ -2,7 +2,7 @@
 
 Retrieves email addresses in google scholar results.
 
-Currently, this will only work for the Google Scholar (or Google) search results for the site Springer.com in html (not pdf). More sites will be added in the future.
+Currently, this will only work for the Google Scholar (or Google) search results for the site Springer.com in html (not pdfs since they don't contain emails). More sites will be added in the future.
 
 ### Install Code  
 
