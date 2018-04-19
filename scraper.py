@@ -94,7 +94,11 @@ def output_to_csv(data):
             writer.writerow(headers)
         writer.writerow([unicode(dat).encode("utf-8") for dat in data])
 
+
 if __name__ == "__main__":
     URL = sys.argv[1]
-    PAGES = int(sys.argv[2])
+    try:
+        PAGES = int(sys.argv[2])
+    except IndexError:
+        PAGES = 1
     get_urls(URL, PAGES)
