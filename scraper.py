@@ -64,7 +64,6 @@ def get_data(urls=None):
 
             # convert the list to a string to write to csv
             authors_string = ', '.join(authors_list)
-            print authors_string
 
             # get the contact email
             contact = soup.find("a", attrs={"class":"gtm-email-author"})
