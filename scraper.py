@@ -87,7 +87,7 @@ def get_urls(url, pages=1):
 
 def output_to_csv(data):
     # location where data is output in csv format (this is the location in the container)
-    filename = '~/test_google_scholar_scaper.csv'
+    filename = './test_google_scholar_scaper.csv'
     file_exists = os.path.exists(filename)
     headers = ["article_title", "article_date", "authors_list", "contact_author", "contact_email", "article_keywords", "url"]
 
