@@ -6,7 +6,7 @@ Currently, this will only work for the Google Scholar (or Google) search results
 
 ### Install Code  
 
-1) Clone repository the repo: `git clone https://github.com/jurmann/google-scholar-scraper.git`  
+1) Clone the repository: `git clone https://github.com/jurmann/google-scholar-scraper.git`  
 2) Create a virtual environment: `virtualenv env`  
     - if you don't have virtualenv run `pip install virtualenv`  
     - if you don't have pip run `sudo easy_install pip`  
